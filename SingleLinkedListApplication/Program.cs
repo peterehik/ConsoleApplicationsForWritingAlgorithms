@@ -9,8 +9,76 @@ namespace SingleLinkedListApplication
 {
     class Program
     {
-        
-        static void Main(string[] args)
+        private static Node ReverseListHelper(Node curNode, Node prevNode)
+        {
+            if (curNode != null)
+            {
+                var nextNode = curNode.Next;
+                curNode.Next = prevNode;
+                return ReverseListHelper(nextNode, curNode);
+            }
+            return prevNode;
+
+        }
+
+        private static Node SortedInsertNodeHelper(Node prevNode, Node curNode, Node newNode)
+        {
+            if(curNode == null)
+            {
+                if (prevNode != null)
+                    prevNode.Next = newNode;
+
+                return newNode;
+            }
+            if(newNode.Data <= curNode.Data)
+            {
+                if(prevNode != null)
+                    prevNode.Next = newNode;
+                newNode.Next = curNode;
+                return newNode;
+            }
+            return SortedInsertNodeHelper(curNode, curNode.Next, newNode);
+        }
+
+        private static Node SortedInsertNode(Node head, int data)
+        {
+            return SortedInsertNodeHelper(null, head, new Node(data));
+        }
+
+        private static void ReverseListTest()
+        {
+            var head = new Node(1, new Node(2, new Node(2, new Node(4, new Node(5, null)))));
+            var node2 = head.Next;
+            var linkedList = new SingleLinkedList(head);
+            linkedList.PrintList();
+
+            var newhead =ReverseListHelper(head, null);
+
+            new SingleLinkedList(newhead).PrintList();
+
+
+            Console.ReadLine();
+        }
+
+        private static void SortedInsertNode()
+        {
+            var head = new Node(1, new Node(2, new Node(2, new Node(4, new Node(5, null)))));
+            var linkedList = new SingleLinkedList(head);
+            linkedList.PrintList();
+
+            SortedInsertNode(head, 3);
+            linkedList.PrintList();
+            SortedInsertNode(head, 6);
+            linkedList.PrintList();
+
+            linkedList.Head = SortedInsertNode(head, 0);
+            linkedList.PrintList();
+
+
+            Console.ReadLine();
+        }
+
+        private static void OriginalTest()
         {
             var head = new Node(1, new Node(2, new Node(2, new Node(4, new Node(5, null)))));
             var node2 = head.Next;
@@ -58,7 +126,7 @@ namespace SingleLinkedListApplication
             var b = new SingleLinkedList(new Node(2,
                 new Node(4, new Node(5, new Node(6, new Node(7, new Node(8, new Node(9))))))));
 
-            Console.Write("A: "); 
+            Console.Write("A: ");
             a.PrintList();
             Console.Write("B: ");
             b.PrintList();
@@ -104,8 +172,15 @@ namespace SingleLinkedListApplication
             //lists[1].PrintList();
 
             Console.ReadLine();
-            
-            
+
+        }
+
+
+        static void Main(string[] args)
+        {
+            SortedInsertNode();
+            //ReverseListTest();
+            //OriginalTest();
         }
     }
 }

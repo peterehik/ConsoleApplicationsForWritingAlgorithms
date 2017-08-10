@@ -24,7 +24,7 @@ namespace SingleLinkedListApplication
     public class SingleLinkedList
     {
         private Node _head ;
-        public Node Head { get { return _head;  } private set { _head = value; } }
+        public Node Head { get { return _head;  }  set { _head = value; } }
 
         public int Length
         {
