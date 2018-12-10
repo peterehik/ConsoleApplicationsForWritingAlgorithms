@@ -41,6 +41,7 @@ namespace LinkedListApplication
                 {
                     store[curNode.Key] += 1;
                 }
+                curNode = curNode.Next;
             }
             var duplicates = store.Where(kvp => kvp.Value > 1)
             .Select(kvp => kvp.Key).ToList();
@@ -180,11 +181,11 @@ namespace LinkedListApplication
 
         public override string ToString()
         {
-            string s = _head.ToString();
+            string s = _head.Key.ToString();
             Node curNode = _head.Next;
             while (curNode != null)
             {
-                s += "->" + curNode;
+                s += "->" + curNode.Key;
                 curNode = curNode.Next;
             }
             return s;

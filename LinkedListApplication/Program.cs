@@ -25,6 +25,7 @@ namespace LinkedListApplication
             linkedList.Append(30);
             linkedList.Append(10);
             linkedList.Append(10);
+            linkedList.Append(5);
             Console.WriteLine(linkedList);
             Console.WriteLine("Reversing");
             linkedList.Reverse();
