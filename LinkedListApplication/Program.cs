@@ -22,8 +22,16 @@ namespace LinkedListApplication
             linkedList.AppendBefore(linkedList.FindNode(20), 18);
             Console.WriteLine(linkedList);
             linkedList.DeleteNode(linkedList.FindNode(20));
+            linkedList.Append(30);
+            linkedList.Append(10);
+            linkedList.Append(10);
             Console.WriteLine(linkedList);
-
+            Console.WriteLine("Reversing");
+            linkedList.Reverse();
+            Console.WriteLine(linkedList);
+            Console.WriteLine("Removing Duplicates");
+            linkedList.RemoveDuplicates();
+            Console.WriteLine(linkedList);
             Console.ReadLine();
         }
     }
